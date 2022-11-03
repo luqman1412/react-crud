@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
+import { useNavigate } from 'react-router';
 
 export default function Create() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [checkbox, setCheckBox] = useState(false);
   const [id, setID] = useState(null);
+  let  navigate = useNavigate();
 
   useEffect(() => {
     setID(localStorage.getItem("ID"));
@@ -19,7 +21,9 @@ export default function Create() {
       firstName,
       lastName,
       checkbox,
-    });
+    }).then(()=>{
+        navigate('/read')
+    })
   };
 
   return (
